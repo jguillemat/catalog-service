@@ -70,7 +70,7 @@ pipeline {
                             echo tag exist already
                         else    
                             git tag -a -m '${GIT_TAG_MESSAGE}' ${NEXT_VERSION}
-                            git push --follow-tags
+                            git push --set-upstream origin master
                         fi
                     """)
                     }
