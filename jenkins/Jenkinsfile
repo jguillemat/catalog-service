@@ -58,9 +58,6 @@ pipeline {
                 }
                 success {
                     script {
-                        
-                            git(branches: "$BRANCHES", changelog: true, url: "https://$GIT_PASSWORD:x-oauth-basic@$REPOSITORY")
-                        }
                         echo "Create tag with version: ${NEXT_VERSION}"
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins-ci-user-at-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
                             sh("""
@@ -75,7 +72,7 @@ pipeline {
                                     git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/jguillemat/catalog-service.git ${NEXT_VERSION} 
                                 fi
                                 """)
-                        )
+                        }
                     }
                 }
             }
