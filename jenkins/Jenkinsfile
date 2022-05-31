@@ -63,6 +63,7 @@ pipeline {
                             sh("""
                                 git config --global user.email '${GIT_TAG_USER_EMAIL}'
                                 git config --global user.name '${GIT_TAG_USER_NAME}'
+                                git config --global push.default current
 
                                 if [ \$(git tag -l $NEXT_VERSION) ]; then
                                     echo tag exist already
