@@ -71,7 +71,7 @@ pipeline {
                         else    
                             git tag -a -m '${GIT_TAG_MESSAGE}' ${NEXT_VERSION}
                             # git push --set-upstream origin master
-                            git push -u origin head 
+                            git push origin ${NEXT_VERSION} 
                         fi
                     """)
                     }
