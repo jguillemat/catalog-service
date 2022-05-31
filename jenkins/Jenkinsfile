@@ -58,6 +58,9 @@ pipeline {
                 }
                 success {
                     script {
+                        withCredentials([usernamePassword(credentialsId: 'jenkins-ci-user-at-github', usernameVariable: 'USERNAME', passwordVariable: 'TOKEN')]) {
+                            git(branches: "$BRANCHES", changelog: true, url: "https://$TOKEN:x-oauth-basic@$REPOSITORY")
+                        }
                         echo "Create tag with version: ${NEXT_VERSION}"
                         sh("""
                         git config --global user.email '${GIT_TAG_USER_EMAIL}'
