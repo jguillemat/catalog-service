@@ -68,8 +68,7 @@ pipeline {
                                     echo tag exist already
                                 else    
                                     git tag -a -m '${GIT_TAG_MESSAGE}' ${NEXT_VERSION}
-                                    # git push --set-upstream origin master
-                                    git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/jguillemat/catalog-service.git ${NEXT_VERSION} 
+                                    git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@${REPOSITORY} --tags
                                 fi
                                 """)
                         }
