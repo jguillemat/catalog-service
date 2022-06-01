@@ -17,7 +17,7 @@ pipeline {
         DEV_ENVIRONMENT = 'development'
         TEST_ENVIRONMENT = 'testing'
         PROD_ENVIRONMENT = 'production'
-        APP_NAME = 'order-service'
+        APP_NAME = 'catalog-service'
     }
     // Stages
     stages {
