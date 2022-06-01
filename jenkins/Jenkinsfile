@@ -86,6 +86,16 @@ pipeline {
                 // Verify Deployment
                 script {
                     openshift.withCluster() {
+                        openshift.withProject(env.DEV_ENVIRONMENT){
+                            if (openshift.selector('deploy', env.APP_NAME).exists()) {
+                                echo "deployment ${APP_NAME} exist."
+                                def deployment = openshift.selector('deploy', env.APP_NAME)
+                                deployment.rollout().status()
+                            } else {
+                                error "deployment  ${APP_NAME} not exist."
+                            }
+                        }
+                        /*
                         openshift.withProject( env.DEV_ENVIRONMENT ) {
                             openshiftVerifyDeployment(namespace: DEV_ENVIRONMENT,
                                     depCfg: APP_NAME,
@@ -93,6 +103,7 @@ pipeline {
                                     verifyReplicaCount: 'true',
                                     waitTime: '300000')
                         }
+                        */
                     }
                 }
             }
