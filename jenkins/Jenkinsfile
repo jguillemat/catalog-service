@@ -86,7 +86,7 @@ pipeline {
                 // Verify Deployment
                 script {
                     openshift.withCluster() {
-                        openshift.withProject() {
+                        openshift.withProject( env.DEV_ENVIRONMENT ) {
                             openshiftVerifyDeployment(namespace: DEV_ENVIRONMENT,
                                     depCfg: APP_NAME,
                                     replicaCount: '1',
