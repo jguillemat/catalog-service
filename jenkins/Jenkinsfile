@@ -86,13 +86,13 @@ pipeline {
                 // Verify Deployment
                 script {
                     openshift.withCluster() {
-                        openshift.withProject(env.DEV_ENVIRONMENT){
-                            if (openshift.selector('deploy', env.APP_NAME).exists()) {
+                        openshift.withProject( ${DEV_ENVIRONMENT} ){
+                            if (openshift.selector('deploy', ${APP_NAME}).exists()) {
                                 echo "deployment ${APP_NAME} exist."
-                                def deployment = openshift.selector('deploy', env.APP_NAME)
+                                def deployment = openshift.selector('deploy', ${APP_NAME})
                                 deployment.rollout().status()
                             } else {
-                                error "deployment  ${APP_NAME} not exist."
+                                error "deployment ${APP_NAME} not exist."
                             }
                         }
                         /*
